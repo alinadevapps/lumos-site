@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumos Labs — Premium Mobile Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --black: #0B0B0C;
+      --charcoal: #121316;
+      --metal: #1B1D21;
+      --red: #8A0F16;
+      --orange: #FF5A1F;
+      --white: #F5F5F5;
+      --white-dim: rgba(245, 245, 245, 0.55);
+      --white-faint: rgba(245, 245, 245, 0.07);
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'IBM Plex Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    ::selection {
+      background: var(--orange);
+      color: #000
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--black)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--red);
+      border-radius: 2px
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .35
+    }
+
+    .clash {
+      font-family: 'DM Serif Display', 'Georgia', serif;
+      letter-spacing: -.02em
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all .4s ease
+    }
+
+    nav.scrolled {
+      background: rgba(11, 11, 12, .88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(245, 245, 245, .05)
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: .12em
+    }
+
+    .logo span {
+      color: var(--orange)
+    }
+
+    .nav-cta {
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      padding: .6rem 1.4rem;
+      border: 1px solid rgba(245, 245, 245, .18);
+      border-radius: 2px;
+      transition: all .3s ease
+    }
+
+    .nav-cta:hover {
+      border-color: var(--orange);
+      color: var(--orange)
+    }
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+      padding: 0 3rem
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      transition: left .25s ease, top .25s ease
+    }
+
+    .orb-cursor {
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(circle, rgba(138, 15, 22, .28) 0%, rgba(255, 90, 31, .10) 40%, transparent 70%);
+      transform: translate(-50%, -50%);
+      filter: blur(60px)
+    }
+
+    .orb-static {
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(138, 15, 22, .18) 0%, transparent 65%);
+      left: -10vw;
+      bottom: -10vw
+    }
+
+    .hero-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 90, 31, .15), rgba(138, 15, 22, .2), transparent);
+      transition: transform .3s ease
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      padding-top: 8rem
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp .8s .3s forwards
+    }
+
+    .eyebrow-line {
+      width: 28px;
+      height: 1px;
+      background: var(--orange)
+    }
+
+    .eyebrow span {
+      font-size: .7rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 500
+    }
+
+    h1.hero-h1 {
+      font-size: clamp(3rem, 7.5vw, 8rem);
+      font-weight: 700;
+      line-height: .95;
+      letter-spacing: -.02em;
+      opacity: 0;
+      animation: fadeUp 1s .5s cubic-bezier(.16, 1, .3, 1) forwards;
+      transition: transform .35s ease
+    }
+
+    .grad-text {
+      background: linear-gradient(135deg, #FF5A1F 0%, #8A0F16 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .hero-bottom {
+      margin-top: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 3rem;
+      justify-content: space-between;
+      opacity: 0;
+      animation: fadeUp .8s .9s forwards
+    }
+
+    .hero-sub {
+      max-width: 480px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--white-dim);
+      font-weight: 300
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      padding: 1.1rem 2.4rem;
+      background: linear-gradient(135deg, #FF5A1F, #8A0F16);
+      color: #fff;
+      text-decoration: none;
+      font-size: .8rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-radius: 2px;
+      box-shadow: 0 0 40px rgba(255, 90, 31, .3);
+      transition: box-shadow .3s ease, transform .2s ease;
+      white-space: nowrap
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 70px rgba(255, 90, 31, .55);
+      transform: translateY(-2px)
+    }
+
+    .scroll-hint {
+      margin-top: 7rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--white-dim);
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp .8s 1.6s forwards
+    }
+
+    .bounce {
+      animation: bounce 2s infinite ease-in-out
+    }
+
+    section {
+      padding: 10rem 3rem
+    }
+
+    .inner {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 4rem
+    }
+
+    .section-label .num {
+      font-size: .65rem;
+      color: var(--orange);
+      letter-spacing: .2em
+    }
+
+    .section-label .divider {
+      width: 28px;
+      height: 1px;
+      background: rgba(245, 245, 245, .15)
+    }
+
+    .section-label .text {
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--white-dim)
+    }
+
+    h2.section-h2 {
+      font-size: clamp(1.8rem, 3.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      margin-bottom: 5rem
+    }
+
+    #value {
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden
+    }
+
+    #value::after {
+      content: '';
+      position: absolute;
+      right: -20vw;
+      top: 50%;
+      width: 50vw;
+      height: 50vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138, 15, 22, .08) 0%, transparent 70%);
+      transform: translateY(-50%);
+      pointer-events: none
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: rgba(245, 245, 245, .05);
+      border: 1px solid rgba(245, 245, 245, .05)
+    }
+
+    .value-card {
+      padding: 2.5rem 2rem;
+      background: var(--charcoal);
+      transition: background .3s ease
+    }
+
+    .value-card:hover {
+      background: rgba(255, 90, 31, .04)
+    }
+
+    .value-icon {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      color: var(--orange)
+    }
+
+    .value-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: .8rem
+    }
+
+    .value-body {
+      font-size: .82rem;
+      line-height: 1.65;
+      color: var(--white-dim);
+      font-weight: 300
+    }
+
+    .value-lead {
+      max-width: 780px
+    }
+
+    #pain {
+      background: var(--black)
+    }
+
+    .pain-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(245, 245, 245, .06);
+      transition: transform .25s ease;
+      cursor: default
+    }
+
+    .pain-item:hover {
+      transform: translateX(8px)
+    }
+
+    .pain-num {
+      font-size: .65rem;
+      letter-spacing: .16em;
+      color: var(--orange);
+      padding-top: .2rem
+    }
+
+    .pain-h {
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 600;
+      margin-bottom: .7rem
+    }
+
+    .pain-p {
+      font-size: .9rem;
+      line-height: 1.7;
+      color: var(--white-dim);
+      max-width: 680px;
+      font-weight: 300
+    }
+
+    #services {
+      background: var(--metal)
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: rgba(245, 245, 245, .04)
+    }
+
+    .service-item {
+      padding: 2rem 1.8rem;
+      background: var(--metal);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: background .3s ease
+    }
+
+    .service-item:hover {
+      background: rgba(255, 90, 31, .05)
+    }
+
+    .service-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0
+    }
+
+    .service-name {
+      font-size: .95rem;
+      font-weight: 400
+    }
+
+    #portfolio {
+      background: var(--charcoal)
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem
+    }
+
+    /* ── PROJECT CARD ── */
+    .project-card {
+      background: var(--black);
+      border: 1px solid rgba(245, 245, 245, .06);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color .3s ease, transform .3s ease
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px)
+    }
+
+    .project-card.has-gallery {
+      cursor: pointer
+    }
+
+    .project-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .project-img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .img-label {
+      font-size: .65rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(245, 245, 245, .2);
+      position: relative;
+      z-index: 1
+    }
+
+    .project-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: .6rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: .3rem .7rem;
+      background: rgba(11, 11, 12, .7);
+      border-radius: 2px;
+      backdrop-filter: blur(8px);
+      z-index: 2
+    }
+
+    .project-body {
+      padding: 1.8rem
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: .6rem
+    }
+
+    .project-desc {
+      font-size: .83rem;
+      line-height: 1.65;
+      color: var(--white-dim);
+      font-weight: 300;
+      margin-bottom: 1.4rem
+    }
+
+    .project-result {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .7rem;
+      font-weight: 500;
+      padding: .4rem .8rem;
+      border-radius: 2px;
+      letter-spacing: .05em
+    }
+
+    /* Gallery hint badge */
+    .gallery-hint {
+      position: absolute;
+      bottom: .75rem;
+      right: .75rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .6rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(245, 245, 245, .6);
+      background: rgba(11, 11, 12, .75);
+      backdrop-filter: blur(10px);
+      padding: .35rem .7rem;
+      border-radius: 2px;
+      border: 1px solid rgba(245, 245, 245, .1);
+      transition: color .2s, border-color .2s;
+      z-index: 2;
+    }
+
+    .project-card.has-gallery:hover .gallery-hint {
+      color: var(--orange);
+      border-color: rgba(255, 90, 31, .4)
+    }
+
+    .gallery-hint-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--orange)
+    }
+
+    /* Real image inside card */
+    .project-real-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .project-card:hover .project-real-image {
+      transform: scale(1.05)
+    }
+
+    /* ── LIGHTBOX ── */
+    #pm-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .4s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    #pm-lightbox.open {
+      opacity: 1;
+      pointer-events: all
+    }
+
+    .lb-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(7, 7, 8, .94);
+      backdrop-filter: blur(28px) saturate(.6)
+    }
+
+    .lb-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1100px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      transform: translateY(24px);
+      transition: transform .45s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    #pm-lightbox.open .lb-container {
+      transform: translateY(0)
+    }
+
+    .lb-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .lb-title {
+      font-size: .65rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: .75rem
+    }
+
+    .lb-title::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--orange)
+    }
+
+    .lb-close {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(245, 245, 245, .12);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all .2s ease
+    }
+
+    .lb-close:hover {
+      border-color: var(--orange);
+      color: var(--orange)
+    }
+
+    .lb-stage {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem
+    }
+
+    .lb-slides {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px
+    }
+
+    .lb-track {
+      display: flex;
+      transition: transform .55s cubic-bezier(.16, 1, .3, 1);
+      will-change: transform
+    }
+
+    .lb-slide {
+      min-width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .lb-slide img {
+      width: 100%;
+      max-height: 68vh;
+      object-fit: contain;
+      display: block;
+      border-radius: 4px;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, .7)
+    }
+
+    /* placeholder slide */
+    .lb-slide-placeholder {
+      min-width: 100%;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      color: rgba(245, 245, 245, .15)
+    }
+
+    .lb-slide-placeholder svg {
+      opacity: .3
+    }
+
+    .lb-slide-placeholder span {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase
+    }
+
+    .lb-arrow {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(245, 245, 245, .1);
+      border-radius: 2px;
+      background: rgba(18, 19, 22, .7);
+      backdrop-filter: blur(10px);
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all .25s ease
+    }
+
+    .lb-arrow:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      background: rgba(255, 90, 31, .08)
+    }
+
+    .lb-arrow:disabled {
+      opacity: .2;
+      cursor: default;
+      pointer-events: none
+    }
+
+    .lb-footer {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .lb-thumbs {
+      display: flex;
+      gap: .75rem;
+      justify-content: center
+    }
+
+    .lb-thumb {
+      width: 72px;
+      height: 52px;
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color .25s ease, opacity .25s ease;
+      opacity: .4
+    }
+
+    .lb-thumb.active {
+      border-color: var(--orange);
+      opacity: 1
+    }
+
+    .lb-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .lb-thumb-placeholder {
+      width: 72px;
+      height: 52px;
+      border-radius: 3px;
+      border: 1px solid rgba(245, 245, 245, .08);
+      background: rgba(245, 245, 245, .03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .5rem;
+      letter-spacing: .12em;
+      color: rgba(245, 245, 245, .15);
+      text-transform: uppercase;
+      cursor: default
+    }
+
+    .lb-dots {
+      display: flex;
+      gap: .6rem;
+      align-items: center
+    }
+
+    .lb-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 1px;
+      background: rgba(245, 245, 245, .2);
+      cursor: pointer;
+      transition: all .3s ease
+    }
+
+    .lb-dot.active {
+      width: 24px;
+      background: var(--orange)
+    }
+
+    .lb-counter {
+      font-size: .65rem;
+      letter-spacing: .16em;
+      color: var(--white-dim)
+    }
+
+    #cta {
+      background: var(--black);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 12rem 3rem
+    }
+
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60vw;
+      height: 60vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(138, 15, 22, .15) 0%, rgba(255, 90, 31, .06) 40%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none
+    }
+
+    #cta .inner {
+      position: relative;
+      max-width: 900px
+    }
+
+    .cta-h2 {
+      font-size: clamp(2.2rem, 5.5vw, 6.5rem);
+      font-weight: 700;
+      line-height: .95;
+      letter-spacing: -.03em;
+      margin-bottom: 3rem
+    }
+
+    .cta-sub {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--white-dim);
+      max-width: 500px;
+      margin: 0 auto 4rem;
+      font-weight: 300
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .9rem;
+      padding: 1.3rem 3rem;
+      background: linear-gradient(135deg, #FF5A1F, #8A0F16);
+      color: #fff;
+      text-decoration: none;
+      font-size: .85rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-radius: 2px;
+      box-shadow: 0 0 60px rgba(255, 90, 31, .35);
+      transition: transform .2s ease, box-shadow .3s ease
+    }
+
+    .btn-cta:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 90px rgba(255, 90, 31, .5)
+    }
+
+    footer {
+      padding: 2.5rem 3rem;
+      background: var(--charcoal);
+      border-top: 1px solid rgba(245, 245, 245, .05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem
+    }
+
+    .footer-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .1em
+    }
+
+    .footer-logo span {
+      color: var(--orange)
+    }
+
+    .footer-copy {
+      font-size: .72rem;
+      color: var(--white-dim);
+      letter-spacing: .06em
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(6px)
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .9s cubic-bezier(.16, 1, .3, 1), transform .9s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    @media(max-width:768px) {
+
+      nav,
+      section,
+      footer {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem
+      }
+
+      #hero {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem
+      }
+
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .pain-item {
+        grid-template-columns: 50px 1fr;
+        gap: 1rem
+      }
+
+      .lb-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: .9rem
+      }
+
+      .lb-container {
+        padding: 1.5rem 1rem
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="logo clash">LUMOS<span>.</span></div>
+    <a href="https://wa.me/351960223298" class="nav-cta">Book a Call</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg">
+      <div class="orb orb-cursor" id="orbCursor" style="left:50%;top:50%;position:absolute;"></div>
+      <div class="orb orb-static"></div>
+      <div
+        style="position:absolute;right:5vw;top:10vh;width:30vw;height:30vw;border-radius:50%;background:radial-gradient(circle,rgba(255,90,31,.07) 0%,transparent 70%);filter:blur(50px);">
+      </div>
+      <div class="hero-line" id="heroLine"></div>
+    </div>
+    <div class="hero-content">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div><span>Premium Mobile Systems</span>
+      </div>
+      <h1 class="hero-h1 clash" id="heroH1">Premium mobile<br>systems built to<br><span class="grad-text">reduce
+          friction.</span></h1>
+      <div class="hero-bottom">
+        <p class="hero-sub">We build mobile platforms that reduce operational chaos, increase customer retention, and
+          turn complex journeys into seamless digital experiences.</p>
+        <a href="https://wa.me/351960223298" class="btn-primary">Book a Strategy Call <span>→</span></a>
+      </div>
+      <div class="scroll-hint"><span class="bounce">↓</span> Scroll to explore</div>
+    </div>
+  </section>
+
+  <!-- VALUE -->
+  <section id="value">
+    <div class="inner">
+      <div class="section-label reveal"><span class="num">02</span>
+        <div class="divider"></div><span class="text">Value Proposition</span>
+      </div>
+      <h2 class="section-h2 clash value-lead reveal">We do not sell code. <span
+          style="color:var(--white-dim);font-weight:300;">We build systems that make businesses easier to buy
+          from.</span></h2>
+      <div class="value-grid">
+        <div class="value-card reveal">
+          <div class="value-icon">◈</div>
+          <h3 class="value-title clash">Reduce Friction</h3>
+          <p class="value-body">Every unnecessary tap, form field, and loading screen costs you revenue. We map and
+            eliminate it.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-icon">◉</div>
+          <h3 class="value-title clash">Increase Retention</h3>
+          <p class="value-body">Customers who stay are worth 5× more than new ones. We build systems that make leaving
+            harder.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-icon">⬡</div>
+          <h3 class="value-title clash">Automate Chaos</h3>
+          <p class="value-body">Manual workflows are silent revenue killers. We replace them with intelligent mobile
+            automation.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-icon">◎</div>
+          <h3 class="value-title clash">Premium Customer Flows</h3>
+          <p class="value-body">The path from discovery to purchase to loyalty — rebuilt so every step feels effortless.
+          </p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-icon">◇</div>
+          <h3 class="value-title clash">Operational Clarity</h3>
+          <p class="value-body">Real-time dashboards and smart notifications so your team always knows exactly what's
+            happening.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIN -->
+  <section id="pain">
+    <div class="inner">
+      <div class="section-label reveal"><span class="num">03</span>
+        <div class="divider"></div><span class="text">Business Problems</span>
+      </div>
+      <h2 class="section-h2 clash reveal">Where businesses <span style="color:var(--orange);">silently lose</span>
+        revenue every day.</h2>
+      <div class="pain-item reveal"><span class="pain-num">01</span>
+        <div>
+          <h3 class="pain-h clash">Customers drop off at checkout</h3>
+          <p class="pain-p">Every additional step in a purchase flow reduces conversion by up to 20%. Friction is
+            invisible until it's costing you millions.</p>
+        </div>
+      </div>
+      <div class="pain-item reveal"><span class="pain-num">02</span>
+        <div>
+          <h3 class="pain-h clash">Manual workflows consume your team</h3>
+          <p class="pain-p">Staff spend hours on tasks that a well-built mobile system could handle in seconds. That's
+            not an operations problem — it's a systems problem.</p>
+        </div>
+      </div>
+      <div class="pain-item reveal"><span class="pain-num">03</span>
+        <div>
+          <h3 class="pain-h clash">Poor onboarding destroys retention</h3>
+          <p class="pain-p">80% of users abandon an app within 72 hours of download. First impressions are set in the
+            first 60 seconds. Most apps fail here.</p>
+        </div>
+      </div>
+      <div class="pain-item reveal"><span class="pain-num">04</span>
+        <div>
+          <h3 class="pain-h clash">Businesses lose repeat customers</h3>
+          <p class="pain-p">Acquiring a new customer costs 5–7× more than keeping one. Without a loyalty-driving system,
+            you're paying that premium every single time.</p>
+        </div>
+      </div>
+      <div class="pain-item reveal"><span class="pain-num">05</span>
+        <div>
+          <h3 class="pain-h clash">Scattered systems create invisible losses</h3>
+          <p class="pain-p">When your booking, ordering, CRM, and payments don't talk to each other, errors compound
+            silently. The cost is real — it just doesn't appear on one report.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="inner">
+      <div class="section-label reveal"><span class="num">04</span>
+        <div class="divider"></div><span class="text">Services</span>
+      </div>
+      <h2 class="section-h2 clash reveal" style="max-width:700px;">Built for businesses where customer experience <span
+          style="color:var(--orange);">directly affects revenue.</span></h2>
+      <div class="services-grid">
+        <div class="service-item reveal">
+          <div class="service-dot"></div><span class="service-name">Mobile App Strategy</span>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-dot"></div><span class="service-name">Premium UX / UI Design</span>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-dot"></div><span class="service-name">Booking &amp; Scheduling Systems</span>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-dot"></div><span class="service-name">Mobile Ordering Platforms</span>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-dot"></div><span class="service-name">Loyalty &amp; Retention Systems</span>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-dot"></div><span class="service-name">Customer Dashboards</span>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-dot"></div><span class="service-name">App Store &amp; Google Play Launch</span>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-dot"></div><span class="service-name">Payment &amp; Monetisation Systems</span>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-dot"></div><span class="service-name">Retention Automation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="inner">
+      <div class="section-label reveal"><span class="num">05</span>
+        <div class="divider"></div><span class="text">Selected Work</span>
+      </div>
+      <h2 class="section-h2 clash reveal" style="max-width:600px;">Systems that moved <span
+          style="color:var(--orange);">real numbers.</span></h2>
+      <div class="portfolio-grid" id="portfolioGrid">
+
+        <!-- PROJECT 1 — ProMovie — 3 mockups ready -->
+        <div class="project-card has-gallery reveal" data-accent="#FF5A1F" data-title="ProMovie" data-images='[
+    "assets/promovie1.png",
+    "assets/promovie2.png",
+    "assets/promovie3.png"
+  ]'>
+          <div class="project-img"
+            style="background: linear-gradient(135deg, rgba(255, 90, 31, .13) 0%, rgba(11, 11, 12, .9) 100%);">
+            <div class="project-img-placeholder">
+              <div
+                style="position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, rgba(255, 90, 31, .18) 0%, transparent 65%);">
+              </div>
+
+              <img src="assets/promovie1.png" class="project-real-image" alt="ProMovie" />
+            </div>
+
+            <div class="project-tag" style="color: #FF5A1F; border: 1px solid rgba(255, 90, 31, .27);">
+              Entertainment
+            </div>
+
+            <div class="gallery-hint">
+              <div class="gallery-hint-dot"></div>
+              View
+            </div>
+          </div>
+
+          <div class="project-body">
+            <h3 class="project-title clash">ProMovie</h3>
+
+            <p class="project-desc">
+              Cinematic movie discovery platform with immersive trailer experience and premium
+              retention-focused UX.
+            </p>
+
+            <div class="project-result"
+              style="color: #FF5A1F; background: rgba(255, 90, 31, .07); border: 1px solid rgba(255, 90, 31, .14);">
+              ↑ +42% session duration · 3× return visits
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 2 — Aura Beauty -->
+        <div class="project-card has-gallery reveal" data-accent="#8A0F16" data-title="Aura Beauty" data-images='[
+  "assets/beauty-demo.mov",
+  "assets/beauty.png"
+]'>
+
+          <div class="project-img"
+            style="background:linear-gradient(135deg,rgba(138,15,22,.13) 0%,rgba(11,11,12,.9) 100%);">
+
+            <div class="project-img-placeholder">
+
+              <div style="position:absolute;inset:0;
+                  background:radial-gradient(circle at 30% 50%,
+                  rgba(138,15,22,.18) 0%,transparent 65%);">
+              </div>
+
+              <video class="project-real-image" autoplay muted loop playsinline>
+                <source src="assets/beauty-demo.mov" type="video/quicktime">
+              </video>
+
+            </div>
+
+            <div class="project-tag" style="color:#8A0F16;border:1px solid rgba(138,15,22,.4);">
+              Beauty &amp; Wellness
+            </div>
+
+            <div class="gallery-hint">
+              <div class="gallery-hint-dot"></div>View
+            </div>
+
+          </div>
+
+          <div class="project-body">
+            <h3 class="project-title clash">Aura Beauty</h3>
+
+            <p class="project-desc">
+              Premium booking experience designed to increase
+              repeat appointments and eliminate scheduling friction.
+            </p>
+
+            <div class="project-result" style="color:#FF5A1F;
+         background:rgba(138,15,22,.08);
+         border:1px solid rgba(138,15,22,.2);">
+
+              ↑ +38% repeat bookings · −60% no-shows
+
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 3 — Carta Dining -->
+        <div class="project-card has-gallery reveal" data-accent="#FF5A1F" data-title="Carta Dining"
+          data-images='["assets/restaurant1.png","assets/restaurant2.png"]'>
+          <div class="project-img"
+            style="background:linear-gradient(135deg,rgba(255,90,31,.13) 0%,rgba(11,11,12,.9) 100%);">
+            <div class="project-img-placeholder">
+
+              <div
+                style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,90,31,.18) 0%,transparent 65%);">
+              </div>
+
+              <img src="assets/restaurant1.png" class="project-real-image" alt="Carta Dining" />
+
+            </div>
+
+            <div class="project-tag" style="color:#FF5A1F;border:1px solid rgba(255,90,31,.27);">
+              Food &amp; Hospitality
+            </div>
+
+            <div class="gallery-hint">
+              <div class="gallery-hint-dot"></div>View
+            </div>
+          </div>
+
+          <div class="project-body">
+            <h3 class="project-title clash">Carta Dining</h3>
+
+            <p class="project-desc">
+              Mobile ordering system optimised for faster checkout,
+              upsell flows, and repeat customer retention.
+            </p>
+
+            <div class="project-result"
+              style="color:#FF5A1F;background:rgba(255,90,31,.07);border:1px solid rgba(255,90,31,.14);">
+              ↑ +27% avg order value · 2× checkout speed
+            </div>
+          </div>
+        </div>
+        <!-- PROJECT 4 — Style Atelier -->
+        <div class="project-card has-gallery reveal" data-accent="#8A0F16" data-title="Style Atelier" data-images='[
+  "assets/video4.MOV",
+  "assets/styleatelier.png",
+  "assets/styleatelier2.png"
+]'>
+
+          <div class="project-img"
+            style="background:linear-gradient(135deg,rgba(138,15,22,.13) 0%,rgba(11,11,12,.9) 100%);">
+
+            <div class="project-img-placeholder">
+              <div
+                style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(138,15,22,.18) 0%,transparent 65%);">
+              </div>
+
+              <video class="project-real-image" autoplay muted loop playsinline>
+                <source src="assets/video4.MOV" type="video/quicktime">
+              </video>
+            </div>
+
+            <div class="project-tag" style="color:#8A0F16;border:1px solid rgba(138,15,22,.4);">
+              FASHION TECH
+            </div>
+
+            <div class="gallery-hint">
+              <div class="gallery-hint-dot"></div>View
+            </div>
+          </div>
+
+          <div class="project-body">
+            <h3 class="project-title clash">Style Atelier</h3>
+
+            <p class="project-desc">
+              Private styling platform designed for premium consultations,
+              bookings and curated client experiences.
+            </p>
+
+            <div class="project-result"
+              style="color:#FF5A1F;background:rgba(138,15,22,.08);border:1px solid rgba(138,15,22,.2);">
+              ↑ premium bookings · smoother client flow
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+        <!-- PROJECT 5 — Membership+ -->
+        <div class="project-card has-gallery reveal" data-accent="#FF5A1F" data-title="Membership+" data-images='[]'>
+          <div class="project-img"
+            style="background:linear-gradient(135deg,rgba(255,90,31,.13) 0%,rgba(11,11,12,.9) 100%);">
+            <div class="project-img-placeholder">
+              <div
+                style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,90,31,.18) 0%,transparent 65%);">
+              </div>
+              <span class="img-label">Coming Soon</span>
+            </div>
+
+            <div class="project-tag" style="color:#FF5A1F;border:1px solid rgba(255,90,31,.27);">
+              Membership
+            </div>
+
+            <div class="gallery-hint">
+              <div class="gallery-hint-dot"></div>View
+            </div>
+          </div>
+
+          <div class="project-body">
+            <h3 class="project-title clash">Membership+</h3>
+
+            <p class="project-desc">
+              Premium membership platform designed to increase retention, unlock exclusive perks,
+              and strengthen long-term customer engagement.
+            </p>
+
+            <div class="project-result"
+              style="color:#FF5A1F;background:rgba(255,90,31,.07);border:1px solid rgba(255,90,31,.14);">
+              ↑ +41% member retention · +22% repeat purchases
+            </div>
+          </div>
+        </div>
+        <!-- PROJECT 6 — Sentinel -->
+        <div class="project-card has-gallery reveal" data-accent="#0E7A53" data-title="Sentinel" data-images='[]'>
+          <div class="project-img"
+            style="background:linear-gradient(135deg,rgba(14,122,83,.13) 0%,rgba(11,11,12,.9) 100%);">
+
+            <div class="project-img-placeholder">
+              <div
+                style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(14,122,83,.18) 0%,transparent 65%);">
+              </div>
+
+              <span class="img-label">Coming Soon</span>
+            </div>
+
+            <div class="project-tag" style="color:#0E7A53;border:1px solid rgba(14,122,83,.35);">
+              Cybersecurity
+            </div>
+
+            <div class="gallery-hint" style="pointer-events:none;opacity:.45;">
+              <div class="gallery-hint-dot"></div>View
+            </div>
+          </div>
+
+          <div class="project-body">
+            <h3 class="project-title clash">Sentinel</h3>
+
+            <p class="project-desc">
+              Secure access platform focused on login approvals, trusted devices, and protected sessions.
+            </p>
+
+            <div class="project-result"
+              style="color:#0E7A53;background:rgba(14,122,83,.08);border:1px solid rgba(14,122,83,.2);">
+              ↑ +62% response speed · −41% security overhead
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="inner" style="text-align:center;">
+      <div class="section-label reveal" style="justify-content:center;"><span class="num">06</span>
+        <div class="divider"></div><span class="text">Ready to Build</span>
+      </div>
+      <h2 class="cta-h2 clash reveal">If your business loses customers through friction, <span class="grad-text">the app
+          is not the product.</span> The system is.</h2>
+      <p class="cta-sub reveal">Every week you operate with friction in your customer journey is revenue you will never
+        recover.</p>
+      <a href="mailto:alinadev.apps@gmail.com" class="btn-cta reveal">Start the Conversation <span>→</span></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo clash">LUMOS<span>.</span></div>
+    <p class="footer-copy" id="footerYear"></p>
+  </footer>
+
+  <!-- UNIVERSAL LIGHTBOX -->
+  <div id="pm-lightbox" role="dialog" aria-modal="true">
+    <div class="lb-backdrop" id="lb-backdrop"></div>
+    <div class="lb-container">
+      <div class="lb-header">
+        <div class="lb-title" id="lb-title">Project</div>
+        <button class="lb-close" id="lb-close">✕</button>
+      </div>
+      <div class="lb-stage">
+        <button class="lb-arrow" id="lb-prev">←</button>
+        <div class="lb-slides">
+          <div class="lb-track" id="lb-track"></div>
+        </div>
+        <button class="lb-arrow" id="lb-next">→</button>
+      </div>
+      <div class="lb-footer">
+        <div class="lb-thumbs" id="lb-thumbs"></div>
+        <div class="lb-dots" id="lb-dots"></div>
+        <div class="lb-counter" id="lb-counter"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── NAV
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+    // ── HERO mouse
+    const hero = document.getElementById('hero');
+    const orb = document.getElementById('orbCursor');
+    const heroLine = document.getElementById('heroLine');
+    const heroH1 = document.getElementById('heroH1');
+    hero.addEventListener('mousemove', e => {
+      const r = hero.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      orb.style.left = `${x * 100}%`; orb.style.top = `${y * 100}%`;
+      heroLine.style.transform = `translateY(${(y - .5) * -20}px)`;
+      heroH1.style.transform = `translate(${(x - .5) * 8}px,${(y - .5) * 5}px)`;
+    });
+    hero.addEventListener('mouseleave', () => {
+      heroH1.style.transform = 'translate(0,0)';
+      heroLine.style.transform = 'translateY(0)';
+    });
+
+    // ── Portfolio hover accent
+    document.querySelectorAll('.project-card').forEach(card => {
+      const accent = card.dataset.accent || '#FF5A1F';
+      card.addEventListener('mouseenter', () => card.style.borderColor = accent + '55');
+      card.addEventListener('mouseleave', () => card.style.borderColor = 'rgba(245,245,245,0.06)');
+    });
+
+    // ── Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const siblings = [...e.target.parentElement.querySelectorAll('.reveal')];
+          setTimeout(() => e.target.classList.add('visible'), siblings.indexOf(e.target) * 60);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: .12, rootMargin: '-60px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Footer year
+    document.getElementById('footerYear').textContent = `© ${new Date().getFullYear()} Lumos Labs. All rights reserved.`;
+
+    // ══ UNIVERSAL LIGHTBOX ENGINE ══
+    const lb = document.getElementById('pm-lightbox');
+    const lbTrack = document.getElementById('lb-track');
+    const lbDots = document.getElementById('lb-dots');
+    const lbThumbs = document.getElementById('lb-thumbs');
+    const lbCounter = document.getElementById('lb-counter');
+    const lbTitle = document.getElementById('lb-title');
+    const lbPrev = document.getElementById('lb-prev');
+    const lbNext = document.getElementById('lb-next');
+
+    let lbCurrent = 0;
+    let lbImages = [];
+
+    function buildLightbox(title, images) {
+      lbTitle.textContent = title + ' — App Screens';
+      lbImages = images;
+      lbTrack.innerHTML = '';
+      lbDots.innerHTML = '';
+      lbThumbs.innerHTML = '';
+
+      if (images.length === 0) {
+        // No images yet — show placeholder
+        const ph = document.createElement('div');
+        ph.className = 'lb-slide-placeholder';
+        ph.style.minWidth = '100%';
+        ph.innerHTML = `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Mockups View</span>`;
+        lbTrack.appendChild(ph);
+        lbCounter.textContent = '—';
+        lbPrev.disabled = true;
+        lbNext.disabled = true;
+        // placeholder thumb
+        const t = document.createElement('div');
+        t.className = 'lb-thumb-placeholder';
+        t.textContent = 'Soon';
+        lbThumbs.appendChild(t);
+        return;
+      }
+
+      images.forEach((src, i) => {
+        // slide
+        const slide = document.createElement('div');
+        slide.className = 'lb-slide';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `${title} screen ${i + 1}`;
+        img.draggable = false;
+        slide.appendChild(img);
+        lbTrack.appendChild(slide);
+
+        // dot
+        const dot = document.createElement('div');
+        dot.className = 'lb-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => lbGoTo(i));
+        lbDots.appendChild(dot);
+
+        // thumb
+        const thumb = document.createElement('div');
+        thumb.className = 'lb-thumb' + (i === 0 ? ' active' : '');
+        const ti = document.createElement('img');
+        ti.src = src; ti.alt = '';
+        thumb.appendChild(ti);
+        thumb.addEventListener('click', () => lbGoTo(i));
+        lbThumbs.appendChild(thumb);
+      });
+    }
+
+    function lbGoTo(idx) {
+      lbCurrent = idx;
+      lbTrack.style.transform = `translateX(-${idx * 100}%)`;
+      document.querySelectorAll('#lb-dots .lb-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+      document.querySelectorAll('#lb-thumbs .lb-thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+      lbCounter.textContent = `${idx + 1} / ${lbImages.length}`;
+      lbPrev.disabled = idx === 0;
+      lbNext.disabled = idx === lbImages.length - 1;
+    }
+
+    function lbSlide(dir) {
+      const next = lbCurrent + dir;
+      if (next >= 0 && next < lbImages.length) lbGoTo(next);
+    }
+
+    function openLightbox(card) {
+      const title = card.dataset.title || 'Project';
+      const images = JSON.parse(card.dataset.images || '[]');
+      buildLightbox(title, images);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      if (images.length > 0) lbGoTo(0);
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Attach click to all gallery cards
+    document.querySelectorAll('.project-card.has-gallery').forEach(card => {
+      card.addEventListener('click', () => openLightbox(card));
+    });
+
+    document.getElementById('lb-backdrop').addEventListener('click', closeLightbox);
+    document.getElementById('lb-close').addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => lbSlide(-1));
+    lbNext.addEventListener('click', () => lbSlide(1));
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lbSlide(-1);
+      if (e.key === 'ArrowRight') lbSlide(1);
+    });
+
+    // Swipe
+    let touchStartX = 0;
+    lb.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) lbSlide(dx < 0 ? 1 : -1);
+    });
+  </script>
+</body>
+
+</html>
