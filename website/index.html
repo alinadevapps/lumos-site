@@ -1,12 +1,55 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lumos Labs — Premium Mobile Systems</title>
+  <meta name="description" content="We build premium mobile systems that reduce operational chaos, boost customer retention, and turn complex journeys into seamless digital experiences." />
+  <link rel="canonical" href="https://project-16zz6.vercel.app/" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Lumos Labs" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://project-16zz6.vercel.app/" />
+  <meta property="og:title" content="Lumos Labs — Premium Mobile Systems" />
+  <meta property="og:description" content="We build premium mobile systems that reduce operational chaos, boost customer retention, and turn complex journeys into seamless digital experiences." />
+  <meta property="og:image" content="https://project-16zz6.vercel.app/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Lumos Labs" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lumos Labs — Premium Mobile Systems" />
+  <meta name="twitter:description" content="We build premium mobile systems that reduce operational chaos, boost customer retention, and turn complex journeys into seamless digital experiences." />
+  <meta name="twitter:image" content="https://project-16zz6.vercel.app/assets/og-image.jpg" />
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Lumos Labs",
+    "url": "https://project-16zz6.vercel.app/",
+    "logo": "https://project-16zz6.vercel.app/favicon-96x96.png",
+    "image": "https://project-16zz6.vercel.app/assets/og-image.jpg",
+    "description": "We build premium mobile systems that reduce operational chaos, boost customer retention, and turn complex journeys into seamless digital experiences.",
+    "telephone": "+351960223298",
+    "email": "alinadev.apps@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "PT"
+    },
+    "sameAs": [
+      "https://wa.me/351960223298"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;500;600&display=swap"
     rel="stylesheet" />
   <style>
     *,
@@ -452,7 +495,7 @@
 
     .service-name {
       font-size: .95rem;
-      font-weight: 400
+      font-weight: 300
     }
 
     #portfolio {
@@ -465,7 +508,7 @@
       gap: 1.5rem
     }
 
-    /* ── PROJECT CARD ── */
+
     .project-card {
       background: var(--black);
       border: 1px solid rgba(245, 245, 245, .06);
@@ -551,7 +594,7 @@
       letter-spacing: .05em
     }
 
-    /* Gallery hint badge */
+
     .gallery-hint {
       position: absolute;
       bottom: .75rem;
@@ -584,7 +627,7 @@
       background: var(--orange)
     }
 
-    /* Real image inside card */
+
     .project-real-image {
       position: absolute;
       inset: 0;
@@ -598,7 +641,7 @@
       transform: scale(1.05)
     }
 
-    /* ── LIGHTBOX ── */
+
     #pm-lightbox {
       position: fixed;
       inset: 0;
@@ -716,7 +759,8 @@
       justify-content: center
     }
 
-    .lb-slide img {
+    .lb-slide img,
+    .lb-slide video {
       width: 100%;
       max-height: 68vh;
       object-fit: contain;
@@ -725,7 +769,18 @@
       box-shadow: 0 40px 100px rgba(0, 0, 0, .7)
     }
 
-    /* placeholder slide */
+    .lb-thumb-video-icon {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: rgba(245, 245, 245, .7);
+      background: rgba(18, 19, 22, .6);
+    }
+
+
     .lb-slide-placeholder {
       min-width: 100%;
       height: 400px;
@@ -1020,7 +1075,7 @@
 
 <body>
 
-  <!-- NAV -->
+
   <nav id="nav">
     <div class="logo clash">LUMOS<span>.</span></div>
     <a href="https://wa.me/351960223298" class="nav-cta">Book a Call</a>
@@ -1095,7 +1150,7 @@
     </div>
   </section>
 
-  <!-- PAIN -->
+
   <section id="pain">
     <div class="inner">
       <div class="section-label reveal"><span class="num">03</span>
@@ -1141,7 +1196,7 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
+
   <section id="services">
     <div class="inner">
       <div class="section-label reveal"><span class="num">04</span>
@@ -1181,7 +1236,7 @@
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
+
   <section id="portfolio">
     <div class="inner">
       <div class="section-label reveal"><span class="num">05</span>
@@ -1191,11 +1246,11 @@
           style="color:var(--orange);">real numbers.</span></h2>
       <div class="portfolio-grid" id="portfolioGrid">
 
-        <!-- PROJECT 1 — ProMovie — 3 mockups ready -->
+        <!-- PROJECT 1 -->
         <div class="project-card has-gallery reveal" data-accent="#FF5A1F" data-title="ProMovie" data-images='[
-    "assets/promovie1.png",
-    "assets/promovie2.png",
-    "assets/promovie3.png"
+    "assets/promovie1.webp",
+    "assets/promovie2.webp",
+    "assets/promovie3.webp"
   ]'>
           <div class="project-img"
             style="background: linear-gradient(135deg, rgba(255, 90, 31, .13) 0%, rgba(11, 11, 12, .9) 100%);">
@@ -1204,7 +1259,7 @@
                 style="position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, rgba(255, 90, 31, .18) 0%, transparent 65%);">
               </div>
 
-              <img src="assets/promovie1.png" class="project-real-image" alt="ProMovie" />
+              <img src="assets/promovie1.webp" class="project-real-image" alt="ProMovie" />
             </div>
 
             <div class="project-tag" style="color: #FF5A1F; border: 1px solid rgba(255, 90, 31, .27);">
@@ -1234,8 +1289,8 @@
 
         <!-- PROJECT 2 — Aura Beauty -->
         <div class="project-card has-gallery reveal" data-accent="#8A0F16" data-title="Aura Beauty" data-images='[
-  "assets/beauty-demo.mov",
-  "assets/beauty.png"
+  "assets/beauty-demo.mp4",
+  "assets/beauty.webp"
 ]'>
 
           <div class="project-img"
@@ -1249,7 +1304,7 @@
               </div>
 
               <video class="project-real-image" autoplay muted loop playsinline>
-                <source src="assets/beauty-demo.mov" type="video/quicktime">
+                <source src="assets/beauty-demo.mp4" type="video/mp4">
               </video>
 
             </div>
@@ -1284,7 +1339,7 @@
 
         <!-- PROJECT 3 — Carta Dining -->
         <div class="project-card has-gallery reveal" data-accent="#FF5A1F" data-title="Carta Dining"
-          data-images='["assets/restaurant1.png","assets/restaurant2.png"]'>
+          data-images='["assets/restaurant1.webp","assets/restaurant2.webp"]'>
           <div class="project-img"
             style="background:linear-gradient(135deg,rgba(255,90,31,.13) 0%,rgba(11,11,12,.9) 100%);">
             <div class="project-img-placeholder">
@@ -1293,7 +1348,7 @@
                 style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,90,31,.18) 0%,transparent 65%);">
               </div>
 
-              <img src="assets/restaurant1.png" class="project-real-image" alt="Carta Dining" />
+              <img src="assets/restaurant1.webp" class="project-real-image" alt="Carta Dining" />
 
             </div>
 
@@ -1322,9 +1377,9 @@
         </div>
         <!-- PROJECT 4 — Style Atelier -->
         <div class="project-card has-gallery reveal" data-accent="#8A0F16" data-title="Style Atelier" data-images='[
-  "assets/video4.MOV",
-  "assets/styleatelier.png",
-  "assets/styleatelier2.png"
+  "assets/video4.mp4",
+  "assets/styleatelier.webp",
+  "assets/styleatelier2.webp"
 ]'>
 
           <div class="project-img"
@@ -1336,7 +1391,7 @@
               </div>
 
               <video class="project-real-image" autoplay muted loop playsinline>
-                <source src="assets/video4.MOV" type="video/quicktime">
+                <source src="assets/video4.mp4" type="video/mp4">
               </video>
             </div>
 
@@ -1370,7 +1425,7 @@
 
 
         <!-- PROJECT 5 — Membership+ -->
-        <div class="project-card has-gallery reveal" data-accent="#FF5A1F" data-title="Membership+" data-images='[]'>
+        <div class="project-card reveal" data-accent="#FF5A1F">
           <div class="project-img"
             style="background:linear-gradient(135deg,rgba(255,90,31,.13) 0%,rgba(11,11,12,.9) 100%);">
             <div class="project-img-placeholder">
@@ -1384,9 +1439,6 @@
               Membership
             </div>
 
-            <div class="gallery-hint">
-              <div class="gallery-hint-dot"></div>View
-            </div>
           </div>
 
           <div class="project-body">
@@ -1404,7 +1456,7 @@
           </div>
         </div>
         <!-- PROJECT 6 — Sentinel -->
-        <div class="project-card has-gallery reveal" data-accent="#0E7A53" data-title="Sentinel" data-images='[]'>
+        <div class="project-card reveal" data-accent="#0E7A53">
           <div class="project-img"
             style="background:linear-gradient(135deg,rgba(14,122,83,.13) 0%,rgba(11,11,12,.9) 100%);">
 
@@ -1420,9 +1472,6 @@
               Cybersecurity
             </div>
 
-            <div class="gallery-hint" style="pointer-events:none;opacity:.45;">
-              <div class="gallery-hint-dot"></div>View
-            </div>
           </div>
 
           <div class="project-body">
@@ -1443,7 +1492,7 @@
     </div>
   </section>
 
-  <!-- CTA -->
+
   <section id="cta">
     <div class="inner" style="text-align:center;">
       <div class="section-label reveal" style="justify-content:center;"><span class="num">06</span>
@@ -1463,7 +1512,7 @@
     <p class="footer-copy" id="footerYear"></p>
   </footer>
 
-  <!-- UNIVERSAL LIGHTBOX -->
+
   <div id="pm-lightbox" role="dialog" aria-modal="true">
     <div class="lb-backdrop" id="lb-backdrop"></div>
     <div class="lb-container">
@@ -1487,11 +1536,11 @@
   </div>
 
   <script>
-    // ── NAV
+
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
-    // ── HERO mouse
+
     const hero = document.getElementById('hero');
     const orb = document.getElementById('orbCursor');
     const heroLine = document.getElementById('heroLine');
@@ -1509,14 +1558,14 @@
       heroLine.style.transform = 'translateY(0)';
     });
 
-    // ── Portfolio hover accent
+
     document.querySelectorAll('.project-card').forEach(card => {
       const accent = card.dataset.accent || '#FF5A1F';
       card.addEventListener('mouseenter', () => card.style.borderColor = accent + '55');
       card.addEventListener('mouseleave', () => card.style.borderColor = 'rgba(245,245,245,0.06)');
     });
 
-    // ── Scroll reveal
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -1528,10 +1577,10 @@
     }, { threshold: .12, rootMargin: '-60px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // ── Footer year
+
     document.getElementById('footerYear').textContent = `© ${new Date().getFullYear()} Lumos Labs. All rights reserved.`;
 
-    // ══ UNIVERSAL LIGHTBOX ENGINE ══
+
     const lb = document.getElementById('pm-lightbox');
     const lbTrack = document.getElementById('lb-track');
     const lbDots = document.getElementById('lb-dots');
@@ -1552,7 +1601,7 @@
       lbThumbs.innerHTML = '';
 
       if (images.length === 0) {
-        // No images yet — show placeholder
+
         const ph = document.createElement('div');
         ph.className = 'lb-slide-placeholder';
         ph.style.minWidth = '100%';
@@ -1561,7 +1610,7 @@
         lbCounter.textContent = '—';
         lbPrev.disabled = true;
         lbNext.disabled = true;
-        // placeholder thumb
+
         const t = document.createElement('div');
         t.className = 'lb-thumb-placeholder';
         t.textContent = 'Soon';
@@ -1570,28 +1619,45 @@
       }
 
       images.forEach((src, i) => {
-        // slide
+        const isVideo = /\.(mov|mp4|webm|ogg)$/i.test(src);
+
         const slide = document.createElement('div');
         slide.className = 'lb-slide';
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `${title} screen ${i + 1}`;
-        img.draggable = false;
-        slide.appendChild(img);
+        if (isVideo) {
+          const video = document.createElement('video');
+          video.src = src;
+          video.controls = true;
+          video.playsInline = true;
+          video.loop = true;
+          video.muted = true;
+          video.autoplay = true;
+          slide.appendChild(video);
+        } else {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = `${title} screen ${i + 1}`;
+          img.draggable = false;
+          slide.appendChild(img);
+        }
         lbTrack.appendChild(slide);
 
-        // dot
         const dot = document.createElement('div');
         dot.className = 'lb-dot' + (i === 0 ? ' active' : '');
         dot.addEventListener('click', () => lbGoTo(i));
         lbDots.appendChild(dot);
 
-        // thumb
         const thumb = document.createElement('div');
         thumb.className = 'lb-thumb' + (i === 0 ? ' active' : '');
-        const ti = document.createElement('img');
-        ti.src = src; ti.alt = '';
-        thumb.appendChild(ti);
+        if (isVideo) {
+          const icon = document.createElement('div');
+          icon.className = 'lb-thumb-video-icon';
+          icon.innerHTML = '&#9654;';
+          thumb.appendChild(icon);
+        } else {
+          const ti = document.createElement('img');
+          ti.src = src; ti.alt = '';
+          thumb.appendChild(ti);
+        }
         thumb.addEventListener('click', () => lbGoTo(i));
         lbThumbs.appendChild(thumb);
       });
@@ -1605,6 +1671,9 @@
       lbCounter.textContent = `${idx + 1} / ${lbImages.length}`;
       lbPrev.disabled = idx === 0;
       lbNext.disabled = idx === lbImages.length - 1;
+      lbTrack.querySelectorAll('video').forEach((v, i) => {
+        if (i === idx) { v.play(); } else { v.pause(); }
+      });
     }
 
     function lbSlide(dir) {
@@ -1624,9 +1693,10 @@
     function closeLightbox() {
       lb.classList.remove('open');
       document.body.style.overflow = '';
+      lbTrack.querySelectorAll('video').forEach(v => v.pause());
     }
 
-    // Attach click to all gallery cards
+
     document.querySelectorAll('.project-card.has-gallery').forEach(card => {
       card.addEventListener('click', () => openLightbox(card));
     });
@@ -1636,7 +1706,7 @@
     lbPrev.addEventListener('click', () => lbSlide(-1));
     lbNext.addEventListener('click', () => lbSlide(1));
 
-    // Keyboard
+
     document.addEventListener('keydown', e => {
       if (!lb.classList.contains('open')) return;
       if (e.key === 'Escape') closeLightbox();
@@ -1644,7 +1714,7 @@
       if (e.key === 'ArrowRight') lbSlide(1);
     });
 
-    // Swipe
+
     let touchStartX = 0;
     lb.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     lb.addEventListener('touchend', e => {
