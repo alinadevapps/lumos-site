@@ -986,10 +986,9 @@
 				padding: 2.5rem 3rem;
 				background: var(--charcoal);
 				border-top: 1px solid rgba(245, 245, 245, 0.05);
-				display: flex;
+				display: grid;
+				grid-template-columns: 1fr auto 1fr;
 				align-items: center;
-				justify-content: space-between;
-				flex-wrap: wrap;
 				gap: 1rem;
 			}
 
@@ -1006,8 +1005,7 @@
 			.footer-info {
 				display: flex;
 				align-items: center;
-				gap: 1.5rem;
-				flex-wrap: wrap;
+				justify-content: flex-end;
 			}
 
 			.footer-copy {
@@ -1020,6 +1018,7 @@
 				font-size: 0.72rem;
 				color: var(--white-dim);
 				letter-spacing: 0.06em;
+				text-align: center;
 			}
 
 			.footer-powered a {
@@ -1099,6 +1098,16 @@
 
 				.lb-container {
 					padding: 1.5rem 1rem;
+				}
+
+				footer {
+					grid-template-columns: 1fr;
+					justify-items: center;
+					text-align: center;
+				}
+
+				.footer-info {
+					justify-content: center;
 				}
 			}
 		</style>
@@ -1750,14 +1759,14 @@
 				LUMOS
 				<span>.</span>
 			</div>
+			<p class="footer-powered">
+				Powered By
+				<a href="https://dwa.fyi/" target="_blank" rel="noopener noreferrer">
+					Digital Web Alliance
+				</a>
+			</p>
 			<div class="footer-info">
 				<p class="footer-copy" id="footerYear"></p>
-				<p class="footer-powered">
-					Powered By
-					<a href="https://dwa.fyi/" target="_blank" rel="noopener noreferrer">
-						Digital Web Alliance
-					</a>
-				</p>
 			</div>
 		</footer>
 
