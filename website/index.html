@@ -1021,8 +1021,8 @@
 
 			.partner-card {
 				display: grid;
-				grid-template-columns: auto 1fr;
-				gap: 2.5rem;
+				grid-template-columns: 1fr 2fr;
+				gap: 2rem;
 				align-items: start;
 				background: var(--metal);
 				border: 1px solid rgba(245, 245, 245, 0.07);
@@ -1036,25 +1036,19 @@
 			}
 
 			.partner-mark {
-				font-size: 1.6rem;
-				font-weight: 700;
-				letter-spacing: 0.1em;
-				color: var(--orange);
-				line-height: 1;
-				padding: 0.8rem 1.1rem;
-				border: 1px solid rgba(255, 90, 31, 0.35);
-				border-radius: 3px;
-				white-space: nowrap;
+				width: 100%;
+				max-height: 250px;
+				object-fit: cover;
 			}
 
 			.partner-name {
-    font-family: 'DM Serif Display', 'Georgia', serif;
-    font-size: 1.25rem; 
-    font-weight: 700; 
-    color: var(--white);
-    letter-spacing: -0.02em; 
-    margin-bottom: 0.6rem;
-}
+				font-family: 'DM Serif Display', 'Georgia', serif;
+				font-size: 1.25rem;
+				font-weight: 700;
+				color: var(--white);
+				letter-spacing: -0.02em;
+				margin-bottom: 0.6rem;
+			}
 			.partner-tagline {
 				font-size: 0.65rem;
 				color: var(--orange);
@@ -1747,7 +1741,7 @@
 								Premium membership platform designed to increase retention, unlock
 								exclusive perks, and strengthen long-term customer engagement.
 							</p>
-<!--							<div
+							<!--							<div
 								class="project-result"
 								style="
 									color: #ff5a1f;
@@ -1756,7 +1750,8 @@
 								">
 								↑ +41% member retention · +22% repeat purchases
 							</div>
-							-->						</div>
+							-->
+						</div>
 					</div>
 					<div class="project-card reveal" data-accent="#0E7A53">
 						<div
@@ -1797,7 +1792,7 @@
 								Secure access platform focused on login approvals, trusted devices,
 								and protected sessions.
 							</p>
-<!--
+							<!--
 							<div
 								class="project-result"
 								style="
@@ -1845,7 +1840,7 @@
 					<span class="text">Our Partners</span>
 				</div>
 				<div class="partner-card reveal">
-					<div class="partner-mark clash">DWA</div>
+					<img class="partner-mark" src="assets/partner-dwa.webp" alt="DWA partner" />
 					<div>
 						<p class="partner-name">Digital Web Alliance</p>
 						<p class="partner-tagline">
