@@ -986,10 +986,9 @@
 				padding: 2.5rem 3rem;
 				background: var(--charcoal);
 				border-top: 1px solid rgba(245, 245, 245, 0.05);
-				display: flex;
+				display: grid;
+				grid-template-columns: 1fr auto 1fr;
 				align-items: center;
-				justify-content: space-between;
-				flex-wrap: wrap;
 				gap: 1rem;
 			}
 
@@ -1006,8 +1005,7 @@
 			.footer-info {
 				display: flex;
 				align-items: center;
-				gap: 1.5rem;
-				flex-wrap: wrap;
+				justify-content: flex-end;
 			}
 
 			.footer-copy {
@@ -1016,10 +1014,84 @@
 				letter-spacing: 0.06em;
 			}
 
+			/* Partners section */
+			#partners {
+				border-top: 1px solid rgba(245, 245, 245, 0.05);
+			}
+
+			.partner-card {
+				display: grid;
+				grid-template-columns: auto 1fr;
+				gap: 2.5rem;
+				align-items: start;
+				background: var(--metal);
+				border: 1px solid rgba(245, 245, 245, 0.07);
+				border-radius: 4px;
+				padding: 2.5rem 3rem;
+				transition: border-color 0.35s ease;
+			}
+
+			.partner-card:hover {
+				border-color: rgba(255, 90, 31, 0.28);
+			}
+
+			.partner-mark {
+				font-size: 1.6rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				color: var(--orange);
+				line-height: 1;
+				padding: 0.8rem 1.1rem;
+				border: 1px solid rgba(255, 90, 31, 0.35);
+				border-radius: 3px;
+				white-space: nowrap;
+			}
+
+			.partner-name {
+				font-size: 1.05rem;
+				font-weight: 600;
+				color: var(--white);
+				letter-spacing: 0.04em;
+				margin-bottom: 0.3rem;
+			}
+
+			.partner-tagline {
+				font-size: 0.65rem;
+				color: var(--orange);
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				margin-bottom: 1.25rem;
+			}
+
+			.partner-desc {
+				font-size: 1rem;
+				color: var(--white-dim);
+				line-height: 1.7;
+				margin-bottom: 1.75rem;
+				font-weight: 300;
+			}
+
+			.partner-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 0.65rem;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: var(--orange);
+				text-decoration: none;
+				transition: color 0.3s ease;
+			}
+
+			.partner-link:hover {
+				color: var(--white);
+			}
+
 			.footer-powered {
 				font-size: 0.72rem;
 				color: var(--white-dim);
 				letter-spacing: 0.06em;
+				text-align: center;
 			}
 
 			.footer-powered a {
@@ -1099,6 +1171,26 @@
 
 				.lb-container {
 					padding: 1.5rem 1rem;
+				}
+
+				footer {
+					grid-template-columns: 1fr;
+					justify-items: center;
+					text-align: center;
+				}
+
+				.footer-info {
+					justify-content: center;
+				}
+
+				.partner-card {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+					padding: 2rem 1.5rem;
+				}
+
+				.partner-mark {
+					display: inline-block;
 				}
 			}
 		</style>
@@ -1745,19 +1837,54 @@
 			</div>
 		</section>
 
+		<section id="partners">
+			<div class="inner">
+				<div class="section-label reveal">
+					<span class="num">07</span>
+					<span class="divider"></span>
+					<span class="text">Our Partners</span>
+				</div>
+				<div class="partner-card reveal">
+					<div class="partner-mark clash">DWA</div>
+					<div>
+						<p class="partner-name">Digital Web Alliance</p>
+						<p class="partner-tagline">
+							Smart digital &amp; web solutions for real business growth
+						</p>
+						<p class="partner-desc">
+							At Digital Web Alliance, we design and develop custom web applications
+							and digital products that drive real business growth. We combine clean
+							design, solid architecture, and strategic thinking to create solutions
+							that not only look great but scale effectively. From MVP to full-scale
+							platforms — we help ambitious companies turn ideas into high-performing
+							digital products.
+						</p>
+						<a
+							href="https://dwa.fyi/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="partner-link">
+							Visit dwa
+							<span>→</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<footer>
 			<div class="footer-logo clash">
 				LUMOS
 				<span>.</span>
 			</div>
+			<p class="footer-powered">
+				Powered By
+				<a href="https://dwa.fyi/" target="_blank" rel="noopener noreferrer">
+					Digital Web Alliance
+				</a>
+			</p>
 			<div class="footer-info">
 				<p class="footer-copy" id="footerYear"></p>
-				<p class="footer-powered">
-					Powered By
-					<a href="https://dwa.fyi/" target="_blank" rel="noopener noreferrer">
-						Digital Web Alliance
-					</a>
-				</p>
 			</div>
 		</footer>
 
